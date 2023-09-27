@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$XDG_DATA_HOME" ]; then
+	XDG_DATA_HOME=$HOME/.local/share
+fi
+
+exec podman run \
+	--rm \
+	--ipc host \
+	--volume=/dev/bus/usb:/dev/bus/usb \
+	--volume "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" \
+	--volume "$XDG_DATA_HOME/Pico Technology:/root/.local/share/Pico Technology" \
+	--volume "$HOME/Waveforms:/root/Waveforms" \
+	--env WAYLAND_DISPLAY \
+	--env XDG_RUNTIME_DIR \
+	gonzzor/picoscope

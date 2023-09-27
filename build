@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec podman build --tag gonzzor/picoscope "$(readlink -e $(dirname "$0"))"
