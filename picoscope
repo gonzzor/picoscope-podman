@@ -4,6 +4,11 @@ if [ -z "$XDG_DATA_HOME" ]; then
 	XDG_DATA_HOME=$HOME/.local/share
 fi
 
+if [ -z "$WAYLAND_DISPLAY" ]; then
+	echo "Wayland isn't running."
+	exit 1
+fi
+
 exec podman run \
 	--rm \
 	--ipc host \
